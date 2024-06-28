@@ -1,4 +1,4 @@
-Forked 2024-06-28， (orig README)[README.md.orig]
+Forked 2024-06-28， [orig README](README.md.orig)
 
 ### Build
 
