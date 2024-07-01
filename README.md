@@ -1,10 +1,12 @@
-Forked 2024-06-28， [orig README](README.md.orig)
+Forked 2024-06-28， [orig README](README.orig.md)
 
 ### Build
+OS: Ubuntu 22.04.3 LTS
+cmake version 3.22.1
 
 In order to build llama.cpp you have four different options.
 
-- Using `CMake`:
+Using `CMake` : 
     ```bash
     sudo apt-get update
     sudo apt-get install build-essential cmake
@@ -19,8 +21,17 @@ In order to build llama.cpp you have four different options.
     还有错的话，或者问问chatgpt
     ```
 
-    
+    - cpu 版本:
     ```bash
-    cmake -B build
+    cmake -B build_cpu
     cmake --build build --config Release
+    
     ```
+    - gpu 版本:
+    ```bash
+    cmake -B build_gpu -DGGML_CUDA=ON
+    cmake --build build_gpu --config Release
+    
+    ```
+Teat:  
+     ./main -m /path/to/llmweights.gguf -n 256 --repeat_penalty 1.0 --color -i -r "User:" -f ../../prompts/chat-with-bob.txt
