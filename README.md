@@ -29,9 +29,15 @@ Using `CMake` :
     ```
     - gpu 版本:
     ```bash
+    make GGML_CUDA=1
     cmake -B build_gpu -DGGML_CUDA=ON
     cmake --build build_gpu --config Release
     
     ```
-Teat:  
+Test:  
+    ```
      ./main -m /path/to/llmweights.gguf -n 256 --repeat_penalty 1.0 --color -i -r "User:" -f ../../prompts/chat-with-bob.txt
+    ```
+
+
+     
