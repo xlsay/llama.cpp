@@ -6,7 +6,8 @@ cmake version 3.22.1
 
 In order to build llama.cpp you have four different options.
 
-Using `CMake` : 
+Using `CMake` :
+
     ```bash
     sudo apt-get update
     sudo apt-get install build-essential cmake
@@ -21,24 +22,28 @@ Using `CMake` :
     
     ```
 
-    - cpu 版本:
+     - cpu 版本:
+
     ```bash
     cmake -B build_cpu
     cmake --build build --config Release
     ```
     
-    - gpu 版本:
+     - gpu 版本:
     ```bash
     cmake -B build_gpu -DLLAMA_CUDA=ON
     cmake --build build_gpu --config Release 
     此外，~/.bashrc 中添加 export LLAMA_CUDA_NVCC=/THE/NVCC/EXE/PATH
-
+    ```
+    
     - 编译gpu版server
+    
+    ```bash
     cd llama.cpp/examples/server
     cmake -B build   
     ```
-    
-Test:  
+
+    Test:  
     ```
     cd llama.cpp/build_gpu/bin
      ./main -m /path/to/llmweights.gguf -n 256 --repeat_penalty 1.0 --color -i -r "User:" -f ../../prompts/chat-with-bob.txt -ngl 30
@@ -64,6 +69,4 @@ Test:
     --header "Content-Type: application/json" \
     --data '{"prompt": "Building a website can be done in 10 simple steps:","n_predict": 128}'
     ```
-
-
-     
+    
