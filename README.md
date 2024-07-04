@@ -29,14 +29,42 @@ Using `CMake` :
     ```
     - gpu 版本:
     ```bash
-    make GGML_CUDA=1
-    cmake -B build_gpu -DGGML_CUDA=ON
-    cmake --build build_gpu --config Release
+
+    cmake -B build_gpu -DLLAMA_CUDA=ON
+    cmake --build build_gpu --config Release 
+    此外，~/.bashrc 中添加 export LLAMA_CUDA_NVCC=/THE/NVCC/EXE/PATH
+
+    - 编译gpu版server
+    cd llama.cpp/examples/server
+    cmake -B build
+    
     
     ```
 Test:  
     ```
-     ./main -m /path/to/llmweights.gguf -n 256 --repeat_penalty 1.0 --color -i -r "User:" -f ../../prompts/chat-with-bob.txt
+    cd llama.cpp/build_gpu/bin
+     ./main -m /path/to/llmweights.gguf -n 256 --repeat_penalty 1.0 --color -i -r "User:" -f ../../prompts/chat-with-bob.txt -ngl 30
+     
+     显存占用测试：
+    ggml_cuda_init: found 2 CUDA devices:
+      Device 0: NVIDIA GeForce GTX 1080 Ti, compute capability 6.1, VMM: yes
+      Device 1: NVIDIA GeForce GTX 1080 Ti, compute capability 6.1, VMM: yes
+    
+    一层都没加载时，显存占用 372M+152M    
+    llama-2-7b-chat.Q8_0                33层全部加载后，3894M+3606M  
+    Mistral-7B-Instruct-v0.3.Q8_0       33层全部加载后，372M+152M  
+
+    开启服务：
+    ./server -m /path/to/llmweights.gguf -c 2048 --host 0.0.0.0 --port 8081  -ngl 33
+    ref: 参数 https://github.com/ggerganov/llama.cpp/tree/master/examples/server
+    注：8080会报错 404 page not found
+
+    浏览器地址栏输入： http://IP:8081/
+    OR:
+    curl --request POST \
+    --url http://IP:8081/completion \
+    --header "Content-Type: application/json" \
+    --data '{"prompt": "Building a website can be done in 10 simple steps:","n_predict": 128}'
     ```
 
 
