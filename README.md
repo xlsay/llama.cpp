@@ -36,7 +36,7 @@ cmake --build build_gpu --config Release
 此外，~/.bashrc 中添加 export LLAMA_CUDA_NVCC=/THE/NVCC/EXE/PATH
 ```
 
-Test:  
+### Test  
 
 - 用法1： 终端交互
 
