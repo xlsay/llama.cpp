@@ -55,7 +55,7 @@ ggml_cuda_init: found 2 CUDA devices:
 
 一层都没加载时，显存占用 372M+152M    
 llama-2-7b-chat.Q8_0                33层全部加载后，3894M+3606M  
-Mistral-7B-Instruct-v0.3.Q8_0       33层全部加载后，372M+152M  
+Mistral-7B-Instruct-v0.3.Q8_0       33层全部加载后，  
 
 开启服务：
 ./server -m /path/to/llmweights.gguf -c 2048 --host 0.0.0.0 --port 8081  -ngl 33
