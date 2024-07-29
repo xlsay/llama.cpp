@@ -12,6 +12,7 @@ Using `CMake` :
 sudo apt-get update
 sudo apt-get install build-essential cmake
 
+issue1:
 如果安装cmake报错“libdvd-pkg: apt-get check failed, you may have broken packages. ”
 sudo dpkg --configure -a  # 修复损坏的包
 sudo apt-get install -f  # 修复依赖关系
@@ -19,6 +20,22 @@ sudo apt-get check # 检查系统中是否还有其他损坏的包
 没错的话，再次尝试安装 build-essential 和 cmake：
 sudo apt-get install build-essential cmake
 还有错的话，或者问问chatgpt
+
+issue2: cmake版本过低
+这个项目要求cmake版本 3.18 or higher,如果需要升级参考 https://blog.csdn.net/qq_27350133/article/details/121994229
+bak:
+    https://cmake.org/files/ 下载编译包，如3.22
+    wget https://cmake.org/files/v3.22/cmake-3.22.1.tar.gz
+    tar -xvzf cmake-3.22.1.tar.gz
+    chmod 777 .cmake-3.22.1/configure
+    ./configure
+    make
+    sudo make install
+    sudo update-alternatives --install /usr/bin/cmake cmake /usr/local/bin/cmake 1 --force
+    cmake --version
+    # cmake version 3.22.1
+    # CMake suite maintained and supported by Kitware (kitware.com/cmake).
+
 
 ```
 
